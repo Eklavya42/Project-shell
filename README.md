@@ -2,14 +2,7 @@
 
 OS Project for Anjani Verma: Creating a shell
 
-## Possible Languages
-
-- Rust
-- Nim
-- C
-- C++
-- Go
-- Ruby
+## Languages : Nim
 
 ## Members
 

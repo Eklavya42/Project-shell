@@ -49,6 +49,7 @@ Run shell output files
 ## Screenshot
 
 ![ash (Ares SHell)](https://github.com/Eklavya42/Project-shell/blob/master/images/Screenshot%20from%202018-11-10%2019-15-33.png?raw=true "ash help")
+![ash (Ares SHell)](https://github.com/Eklavya42/Project-shell/blob/master/images/screenshot1.png?raw=true "ash new window")
 
 
 ## Members

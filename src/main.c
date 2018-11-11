@@ -2,7 +2,7 @@
 
   @file         main.c
 
-  @author       Harshit Joshi & Eklavya Chopra
+  @author       Harshit Joshi, Eklavya Chopra, Dhairya Kathpalia, Hardik Kapoor & Gaurav Saini
 
   @date         Friday,  9 November 2018
 

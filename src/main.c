@@ -2,7 +2,7 @@
 
   @file         main.c
 
-  @author       Harshit Joshi & Eklavya Chopra
+  @author       Harshit Joshi, Eklavya Chopra & Hardik Kapoor
 
   @date         Friday,  9 November 2018
 
@@ -18,6 +18,8 @@
 #include <string.h>
 #include <limits.h>
 #include <sys/stat.h>
+#include <readline/readline.h>
+#include <readline/history.h>
 
 #define BUFSIZE 1000
 
@@ -263,40 +265,27 @@ int ash_execute(char **args)
  */
 char *ash_read_line(void)
 {
-  int bufsize = ash_RL_BUFSIZE;
-  int position = 0;
-  char *buffer = malloc(sizeof(char) * bufsize);
-  int c;
+  char* input, buffer[100];
 
-  if (!buffer) {
-    fprintf(stderr, "ash: allocation error\n");
-    exit(EXIT_FAILURE);
-  }
+    // Configure readline to auto-complete paths when the tab key is hit.
+    rl_bind_key('\t', rl_complete);
 
-  while (1) {
-    // Read a character
-    c = getchar();
+    for(;;) {
+        // Create prompt string from user name and current working directory.
+        snprintf(buffer, sizeof(buffer), "%s:%s $ ", getenv("USER"), getcwd(NULL, 1024));
 
-    if (c == EOF) {
-      exit(EXIT_SUCCESS);
-    } else if (c == '\n') {
-      buffer[position] = '\0';
-      return buffer;
-    } else {
-      buffer[position] = c;
+        // Display prompt and read input (n.b. input must be freed after use)...
+        input = readline(buffer);
+
+        // Check for EOF.
+        if (!input)
+            break;
+
+        // Add input to history.
+        add_history(input);
+
+        
     }
-    position++;
-
-    // If we have exceeded the buffer, reallocate.
-    if (position >= bufsize) {
-      bufsize += ash_RL_BUFSIZE;
-      buffer = realloc(buffer, bufsize);
-      if (!buffer) {
-        fprintf(stderr, "ash: allocation error\n");
-        exit(EXIT_FAILURE);
-      }
-    }
-  }
 }
 
 #define ash_TOK_BUFSIZE 64

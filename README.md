@@ -12,6 +12,9 @@ OS Project for Operating System Course at Cluster Innovation Centre, University 
   - cd
   - help
   - exit
+  - ls
+  - mkdir
+  - pwd
 - Check for dotfile
 - Run normal application example `>> subl text.txt`
 
@@ -19,8 +22,29 @@ OS Project for Operating System Course at Cluster Innovation Centre, University 
 
 - [ ] Using dotfile
 - [ ] Add more built-in functions
-- [ ] Make better ui. Colors? New Window?
+- [ ] Make better ui. Colors?
+- [x] New Window
 - [x] Add current location to prompt
+
+## Usage
+
+To run the shell get main executable first  
+
+```
+gcc main.c -o main
+```
+
+Then create runner  executable
+```
+gcc runner.c -o shell
+```
+
+Run shell output files
+
+```
+./shell
+```
+
 
 ## Screenshot
 

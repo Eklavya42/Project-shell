@@ -15,6 +15,7 @@ OS Project for Operating System Course at Cluster Innovation Centre, University 
   - ls
   - mkdir
   - pwd
+  - rmdir
 - Check for dotfile
 - Run normal application example `>> subl text.txt`
 

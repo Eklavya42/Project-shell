@@ -54,19 +54,25 @@ int ash_rmdir(char **args);
  */
 char *builtin_str[] = {
   "cd",
+  "chdir",
   "help",
   "exit",
   "mkdir",
+  "md",
   "pwd",
-  "rmdir"
+  "rmdir",
+  "rd"
 };
 
 int (*builtin_func[]) (char **) = {
   &ash_cd,
+  &ash_cd,
   &ash_help,
   &ash_exit,
   &ash_mkdir,
+  &ash_mkdir,
   &ash_pwd,
+  &ash_rmdir,
   &ash_rmdir
 };
 
@@ -86,7 +92,7 @@ int ash_num_builtins() {
 int ash_cd(char **args)
 {
   if (args[1] == NULL) {
-      fprintf(stderr, "ash: expected argument to \"cd\"\n");
+      fprintf(stderr, "ash: expected argument to \"%s\"\n",args[0]);
   } else {
     if(strcmp(args[1],"--help")==0){
         printf("cd: cd [-L|[-P [-e]] [-@]] [dir]\n\
@@ -172,7 +178,7 @@ int ash_exit(char **args)
  {
 
             if(args[1]==NULL){
-              fprintf(stderr, "ash: expected argument to \"mkdir\"\n");
+              fprintf(stderr, "ash: expected argument to \"%s\"\n",args[0]);
 
             }else{
 
@@ -220,7 +226,7 @@ int ash_pwd(char **args)
 int ash_rmdir(char **args)
  {
             if(args[1]==NULL){
-              fprintf(stderr, "ash: expected argument to \"rmdir\"\n");
+              fprintf(stderr, "ash: expected argument to \"%s\"\n",args[0]);
 
             }else{
 

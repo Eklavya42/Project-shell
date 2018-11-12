@@ -32,7 +32,7 @@ OS Project for Operating System Course at Cluster Innovation Centre, University 
 To run the shell get main executable first  
 
 ```
-gcc main.c -o main
+gcc main.c -o main -lreadline
 ```
 
 Then create runner  executable

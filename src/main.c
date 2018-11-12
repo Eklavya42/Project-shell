@@ -2,7 +2,7 @@
 
   @file         main.c
 
-  @author       Harshit Joshi, Eklavya Chopra & Hardik Kapoor
+  @author       Harshit Joshi, Eklavya Chopra, Dhairya Kathpalia, Hardik Kapoor & Gaurav Saini
 
   @date         Friday,  9 November 2018
 
@@ -49,23 +49,33 @@ int ash_help(char **args);
 int ash_exit(char **args);
 int ash_mkdir(char **args);
 int ash_pwd(char **args);
+int ash_rmdir(char **args);
+
 /*
   List of builtin commands, followed by their corresponding functions.
  */
 char *builtin_str[] = {
   "cd",
+  "chdir",
   "help",
   "exit",
   "mkdir",
-  "pwd"
+  "md",
+  "pwd",
+  "rmdir",
+  "rd"
 };
 
 int (*builtin_func[]) (char **) = {
   &ash_cd,
+  &ash_cd,
   &ash_help,
   &ash_exit,
   &ash_mkdir,
-  &ash_pwd
+  &ash_mkdir,
+  &ash_pwd,
+  &ash_rmdir,
+  &ash_rmdir
 };
 
 int ash_num_builtins() {
@@ -84,7 +94,7 @@ int ash_num_builtins() {
 int ash_cd(char **args)
 {
   if (args[1] == NULL) {
-      fprintf(stderr, "ash: expected argument to \"cd\"\n");
+      fprintf(stderr, "ash: expected argument to \"%s\"\n",args[0]);
   } else {
     if(strcmp(args[1],"--help")==0){
         printf("cd: cd [-L|[-P [-e]] [-@]] [dir]\n\
@@ -162,7 +172,7 @@ int ash_exit(char **args)
 
 /**
    @brief Builtin command: make directory.
-   @param args List of args.  args[0] is "mkdir".  args[1] is the directory.
+   @param args List of args.  args[0] is "mkdir".  args[1]...[n] is the directories.
    @return Always returns 1, to continue executing.
  */
 
@@ -170,12 +180,18 @@ int ash_exit(char **args)
  {
 
             if(args[1]==NULL){
-              fprintf(stderr, "ash: expected argument to \"mkdir\"\n");
+              fprintf(stderr, "ash: expected argument to \"%s\"\n",args[0]);
 
             }else{
 
                     if(mkdir(args[1],0777)==-1 ){
                           perror("+--- Error in mkdir ");
+                    }
+
+                    for(int i=2;args[i]!=NULL;i++){
+                      if(mkdir(args[i],0777)==-1 ){
+                          perror("+--- Error in mkdir ");
+                      }
                     }
               }
 
@@ -202,6 +218,33 @@ int ash_pwd(char **args)
    else perror("+--- Error in getcwd() : ");
 
 }
+
+/**
+   @brief Builtin command: remove directory.
+   @param args List of args.  args[0] is "rmdir".  args[1]...[n] are the directories to be removed
+   @return Always returns 1, to continue executing.
+ */
+
+int ash_rmdir(char **args)
+ {
+            if(args[1]==NULL){
+              fprintf(stderr, "ash: expected argument to \"%s\"\n",args[0]);
+
+            }else{
+
+                    if(rmdir(args[1])==-1 ){
+                          perror("+--- Error in rmdir ");
+                    }
+
+                    for(int i=2;args[i]!=NULL;i++){
+                      if(rmdir(args[i])==-1 ){
+                          perror("+--- Error in rmdir ");
+                      }
+                    }
+              }
+
+    return 1;
+ }
 
 
  /**

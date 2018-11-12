@@ -9,12 +9,13 @@ OS Project for Operating System Course at Cluster Innovation Centre, University 
 ## Implementation
 
 - Built-in functions:
-  - cd
+  - cd/chdir
   - help
   - exit
   - ls
-  - mkdir
+  - mkdir/md
   - pwd
+  - rmdir/rd
 - Check for dotfile
 - Run normal application example `>> subl text.txt`
 
